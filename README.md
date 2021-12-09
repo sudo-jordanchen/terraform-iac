@@ -1,4 +1,6 @@
-# Terraform
+# Infrastructure as code
+# The task below would be done using Terraform
+
 This project aims to automate the following task:
 
 # Create a Windows instance
