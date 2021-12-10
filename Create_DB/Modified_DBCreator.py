@@ -73,8 +73,8 @@ class MainMenu(cmd.Cmd):
                 raise KeyboardInterrupt
 
     def do_job(self):
-        self.do_connect(None)
-        self.do_generate(None)
+        self.do_connect("connect")
+        self.do_generate("generate")
         
     def help_dbconfig(self):
         print("Configure database connection parameters")
