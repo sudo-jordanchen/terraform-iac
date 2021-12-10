@@ -75,12 +75,25 @@ class MainMenu(cmd.Cmd):
     def do_job(self):
         self.test_db_conn()
         time.sleep(2)
+
         try:
             self.do_clear_and_generate()
         except:
             pass
+
         time.sleep(2)
-        self.generate_data() 
+
+        try:
+            self.do_cleardb("a")
+        except:
+            pass
+        
+        time.sleep(2)
+
+        try:
+            self.generate_data()
+        except:
+            pass
         
     def help_dbconfig(self):
         print("Configure database connection parameters")
