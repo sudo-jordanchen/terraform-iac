@@ -1,7 +1,4 @@
-$LocalTempDir = $env:TEMP; 
-$DB_Creator = "Modified_DBCreator.py";
-
-Start-Process python -ArgumentList "$LocalTempDir\$DB_Creator" -Wait; 
+Start-Process python -ArgumentList "C:\Users\Administrator\AppData\Local\Temp\Modified_DBCreator.py" -Wait; 
 
 Start-Process -FilePath "C:\Bloodhound\BloodHound-win32-x64\BloodHound.exe";
 Start-Sleep 5
