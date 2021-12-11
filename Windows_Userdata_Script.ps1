@@ -69,8 +69,8 @@ Start-Process python -ArgumentList "$LocalTempDir\$change_default_password_scrip
 [system.io.directory]::CreateDirectory("C:\Bloodhound");
 [system.io.directory]::CreateDirectory("C:\ZipFolder");
 
-$Url = 'https://github.com/BloodHoundAD/BloodHound/releases/download/4.0.3/BloodHound-win32-x64.zip';
-$ZipFile = 'C:\ZipFolder\' + $(Split-Path -Path $Url -Leaf);
+$Url = "https://github.com/BloodHoundAD/BloodHound/releases/download/4.0.3/BloodHound-win32-x64.zip";
+$ZipFile = "C:\ZipFolder\" + $(Split-Path -Path $Url -Leaf);
 $Destination= "C:\Bloodhound";
 
 (new-object System.Net.WebClient).DownloadFile($Url, "$ZipFile");
