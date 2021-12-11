@@ -14,7 +14,10 @@ sudo docker build -t covenant .
 sudo apt install expect -y
 echo -e '#!/bin/expect\nspawn sudo docker run -it -p 7443:7443 -p 8080:8080 -p 4433:4433 --name covenant -v /opt/Covenant/Covenant/Data:/app/Data covenant --username AdminUser --computername 0.0.0.0\nexpect "Password:"' > script
 echo 'send "\n"' >> script
+echo 'send "\n"' >> script
 echo 'expect *root*' >> script
+echo 'sleep infinity' >> script
+echo 'send "\n"' >> script
 echo 'send "\n"' >> script
 echo 'expect *root*' >> script
 chmod 777 script
