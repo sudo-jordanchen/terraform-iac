@@ -1,3 +1,5 @@
+Start-Process python -ArgumentList "C:\Users\Administrator\AppData\Local\Temp\Modified_DBCreator.py" -Wait; 
+
 Start-Process -FilePath "C:\Bloodhound\BloodHound-win32-x64\BloodHound.exe";
 Start-Sleep 5
 [void] [System.Reflection.Assembly]::LoadWithPartialName("'Microsoft.VisualBasic")
