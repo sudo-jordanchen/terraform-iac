@@ -6,7 +6,7 @@ New-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows Defender" -Nam
 $LocalTempDir = $env:TEMP; 
 
 # Install Chrome because IE suck
-$ChromeInstaller = "ChromeInstaller.exe"; (new-object System.Net.WebClient).DownloadFile("http://dl.google.com/chrome/install/375.126/chrome_installer.exe", "$LocalTempDir\$ChromeInstaller"); 
+$ChromeInstaller = "ChromeInstaller.exe"; (new-object System.Net.WebClient).DownloadFile('http://dl.google.com/chrome/install/375.126/chrome_installer.exe', "$LocalTempDir\$ChromeInstaller"); 
 
 & "$LocalTempDir\$ChromeInstaller" /silent /install; $Process2Monitor =  "ChromeInstaller"; 
 
@@ -21,7 +21,7 @@ choco install python --version=3.9.9 -y;
 choco install jre8 neo4j-community -y;
 
 $NodeJS_Installer = "node-v16.13.1-x64.msi"; 
-(new-object System.Net.WebClient).DownloadFile("https://nodejs.org/dist/v16.13.1/node-v16.13.1-x64.msi", "$LocalTempDir\$NodeJS_Installer") 
+(new-object System.Net.WebClient).DownloadFile('https://nodejs.org/dist/v16.13.1/node-v16.13.1-x64.msi', "$LocalTempDir\$NodeJS_Installer") 
 
 Start-Process $LocalTempDir\$NodeJS_Installer -Wait -ArgumentList "/qn"
 
@@ -30,7 +30,7 @@ Do { $ProcessesFound = Get-Process | ?{$Process2Monitor -contains $_.Name} | Sel
 
 # Install git
 $GitInstaller = "Git-2.34.1-64-bit.exe"; 
-(new-object System.Net.WebClient).DownloadFile("https://github.com/git-for-windows/git/releases/download/v2.34.1.windows.1/Git-2.34.1-64-bit.exe", "$LocalTempDir\$GitInstaller"); & "$LocalTempDir\$GitInstaller" /VERYSILENT /NORESTART; 
+(new-object System.Net.WebClient).DownloadFile('https://github.com/git-for-windows/git/releases/download/v2.34.1.windows.1/Git-2.34.1-64-bit.exe', "$LocalTempDir\$GitInstaller"); & "$LocalTempDir\$GitInstaller" /VERYSILENT /NORESTART; 
 
 $Process2Monitor =  "Git-2.34.1-64-bit.exe"; 
 
@@ -46,23 +46,23 @@ if (Get-Command electron-package -errorAction SilentlyContinue) {
 }
 
 $Bloodhound_Script = "Start_Bloodhound.ps1"; 
-(new-object System.Net.WebClient).DownloadFile("https://raw.githubusercontent.com/sudo-jordanchen/terraform-iac/main/Start_Bloodhound.ps1", "$LocalTempDir\$Bloodhound_Script"); 
+(new-object System.Net.WebClient).DownloadFile('https://raw.githubusercontent.com/sudo-jordanchen/terraform-iac/main/Start_Bloodhound.ps1', "$LocalTempDir\$Bloodhound_Script"); 
 
 $DB_Creator = "Modified_DBCreator.py"; 
-(new-object System.Net.WebClient).DownloadFile("https://raw.githubusercontent.com/sudo-jordanchen/terraform-iac/main/Create_DB/Modified_DBCreator.py", "$LocalTempDir\$DB_Creator"); 
+(new-object System.Net.WebClient).DownloadFile('https://raw.githubusercontent.com/sudo-jordanchen/terraform-iac/main/Create_DB/Modified_DBCreator.py', "$LocalTempDir\$DB_Creator"); 
 
 $first_kpl = "first.pkl"; 
-(new-object System.Net.WebClient).DownloadFile("https://github.com/sudo-jordanchen/terraform-iac/raw/main/Create_DB/first.pkl", "$LocalTempDir\$first_kpl"); 
+(new-object System.Net.WebClient).DownloadFile('https://github.com/sudo-jordanchen/terraform-iac/raw/main/Create_DB/first.pkl', "$LocalTempDir\$first_kpl"); 
 
 $last_kpl = "last.pkl"; 
-(new-object System.Net.WebClient).DownloadFile("https://github.com/sudo-jordanchen/terraform-iac/raw/main/Create_DB/last.pkl", "$LocalTempDir\$last_kpl"); 
+(new-object System.Net.WebClient).DownloadFile('https://github.com/sudo-jordanchen/terraform-iac/raw/main/Create_DB/last.pkl', "$LocalTempDir\$last_kpl"); 
 
 Start-Process pip -ArgumentList "install neo4j" -Wait; 
 Start-Process pip -ArgumentList "install selenium" -Wait;
 Start-Process pip -ArgumentList "install chromedriver-binary-auto" -Wait;
 
 $change_default_password_script = "Change_Default_Neo4j_Pw.py"; 
-(new-object System.Net.WebClient).DownloadFile("https://raw.githubusercontent.com/sudo-jordanchen/terraform-iac/main/Change_Default_Neo4j_Pw.py", "$LocalTempDir\$change_default_password_script"); 
+(new-object System.Net.WebClient).DownloadFile('https://raw.githubusercontent.com/sudo-jordanchen/terraform-iac/main/Change_Default_Neo4j_Pw.py', "$LocalTempDir\$change_default_password_script"); 
 
 Start-Process python -ArgumentList "$LocalTempDir\$change_default_password_script" -Wait; 
 
