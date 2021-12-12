@@ -20,7 +20,30 @@ Do { $ProcessesFound = Get-Process | ?{$Process2Monitor -contains $_.Name} | Sel
 choco install python --version=3.9.9 -y;
 choco install jre8 neo4j-community -y;
 
+$NodeJS_Installer = "node-v16.13.1-x64.msi"; 
+(new-object System.Net.WebClient).DownloadFile('https://nodejs.org/dist/v16.13.1/node-v16.13.1-x64.msi', "$LocalTempDir\$NodeJS_Installer") 
+
+Start-Process $LocalTempDir\$NodeJS_Installer -Wait -ArgumentList "/qn"
+
+# Check whether the installation of NodeJS is done
+Do { $ProcessesFound = Get-Process | ?{$Process2Monitor -contains $_.Name} | Select-Object -ExpandProperty Name; If ($ProcessesFound) { "Still running: $($ProcessesFound -join ', ')" | Write-Host; Start-Sleep -Seconds 2 } else { rm "$LocalTempDir\$NodeJS_Installer" -ErrorAction SilentlyContinue -Verbose } } Until (!$ProcessesFound)
+
+# Install git
+$GitInstaller = "Git-2.34.1-64-bit.exe"; 
+(new-object System.Net.WebClient).DownloadFile('https://github.com/git-for-windows/git/releases/download/v2.34.1.windows.1/Git-2.34.1-64-bit.exe', "$LocalTempDir\$GitInstaller"); & "$LocalTempDir\$GitInstaller" /VERYSILENT /NORESTART; 
+
+$Process2Monitor =  "Git-2.34.1-64-bit.exe"; 
+
+# Check whether the installation is done
+Do { $ProcessesFound = Get-Process | ?{$Process2Monitor -contains $_.Name} | Select-Object -ExpandProperty Name; If ($ProcessesFound) { "Still running: $($ProcessesFound -join ', ')" | Write-Host; Start-Sleep -Seconds 2 } else { rm "$LocalTempDir\$GitInstaller" -ErrorAction SilentlyContinue -Verbose } } Until (!$ProcessesFound)
+
 $env:Path += ";C:\Program Files\Git\bin;C:\Program Files\nodejs;C:\Python39;C:\Python39\Scripts"
+
+# Execute commands to install electron-packager
+Start-Process npm "install -g electron-package" -Wait;
+if (Get-Command electron-package -errorAction SilentlyContinue) {
+    $electron_version = (electron-package -v)
+}
 
 $Bloodhound_Script = "Start_Bloodhound.ps1"; 
 (new-object System.Net.WebClient).DownloadFile('https://raw.githubusercontent.com/sudo-jordanchen/terraform-iac/main/Start_Bloodhound.ps1', "$LocalTempDir\$Bloodhound_Script"); 
