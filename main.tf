@@ -1,6 +1,7 @@
 provider "aws" {
   region = "ap-southeast-1"
-
+  access_key = ""
+  secret_key = ""
 }
 
 # Security group to only allow certain IPs from accessing the instance
