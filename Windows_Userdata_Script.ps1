@@ -68,7 +68,7 @@ Register-ScheduledTask -Action $action -Trigger $trigger -TaskName "Bloodhound" 
 Write-Host "Second scheduled task";
 $action2 = New-ScheduledTaskAction -Execute "powershell.exe" -Argument "-File C:\Users\Administrator\AppData\Local\Temp\Start_Bloodhound.ps1";
 
-$trigger2 =  New-ScheduledTaskTrigger -Once -At LogOn -User "Administrator";
+$trigger2 =  New-ScheduledTaskTrigger -AtLogOn -User "Administrator";
 
 Register-ScheduledTask -Action $action2 -Trigger $trigger2 -TaskName "Bloodhound Log On" -Description "Run Bloodhound Script [On log on][Backup]";
 
