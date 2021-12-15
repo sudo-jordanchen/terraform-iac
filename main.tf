@@ -14,7 +14,7 @@ resource "aws_security_group" "allow_rdp_1_ip" {
     from_port        = 3389
     to_port          = 3389
     protocol         = "tcp"
-    cidr_blocks      = ["116.15.134.127/32", "116.14.5.152/32"]
+    cidr_blocks      = [""]
   }
 
   # Allow all outgoing connections to download files for installation
@@ -40,7 +40,7 @@ resource "aws_security_group" "covenant_docker_sg" {
     from_port        = 7443
     to_port          = 7443
     protocol         = "tcp"
-    cidr_blocks      = ["116.15.134.127/32", "116.14.5.152/32"]
+    cidr_blocks      = [""]
   }
 
   # Allow all outgoing connections to download files for installation
